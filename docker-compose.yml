@@ -1,0 +1,29 @@
+# Optional convenience file. NOT required to run OmniWatch - the project
+# runs entirely on SQLite by default (see backend/app/db/database.py).
+#
+# This gives you a real PostgreSQL + PostGIS instance if you want to migrate
+# off SQLite for a more production-like setup (see README.md "Database"
+# section for the equivalent schema/migration notes).
+#
+# Usage:
+#   docker compose up -d
+#   export DATABASE_URL=postgresql://omniwatch:omniwatch@localhost:5432/omniwatch
+#   python scripts/load_database.py
+#   uvicorn backend.app.main:app --reload
+
+services:
+  postgres:
+    image: postgis/postgis:16-3.4
+    container_name: omniwatch_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: omniwatch
+      POSTGRES_PASSWORD: omniwatch
+      POSTGRES_DB: omniwatch
+    ports:
+      - "5432:5432"
+    volumes:
+      - omniwatch_pg_data:/var/lib/postgresql/data
+
+volumes:
+  omniwatch_pg_data:

@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme {
+  /* -- Color: GIS command-console palette, not a generic dark SaaS theme -- */
+  --color-void: #14161b;          /* page background */
+  --color-surface: #1b1e24;       /* panel background */
+  --color-surface-raised: #23262e;/* table headers, inputs */
+  --color-line: #2c303a;          /* hairline borders */
+  --color-line-soft: #23262e;
+
+  --color-ink: #e9e7de;           /* primary off-white text */
+  --color-ink-muted: #9298a6;     /* secondary text */
+  --color-ink-dim: #62687a;       /* tertiary / labels */
+
+  --color-signal: #d6552e;        /* single bold accent - risk/alert */
+  --color-signal-dim: #7a3524;
+
+  --color-risk-low: #4c8b6b;
+  --color-risk-moderate: #c7973e;
+  --color-risk-high: #d6552e;
+  --color-risk-veryhigh: #a32d22;
+
+  --color-map-cluster: #d6552e;
+  --color-map-point: #6e93b0;
+
+  /* -- Type -- */
+  --font-display: "Space Grotesk", "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-void);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-signal);
+  color: var(--color-void);
+}
+
+/* Thin, functional scrollbars fit a dense analyst tool better than default chrome */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-void); }
+::-webkit-scrollbar-thumb { background: var(--color-line); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-ink-dim); }
+
+.leaflet-container {
+  background: var(--color-void) !important;
+  font-family: var(--font-body);
+}
