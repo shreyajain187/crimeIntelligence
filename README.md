@@ -126,25 +126,26 @@ omniwatch/
 ## 6. Setup
 
 ```bash
-# 1. Python environment
+1. activate venv
+python -m venv .venv
+.venv\Sctipts\activate
+2. Python environment
 pip install -r requirements.txt
 
-# 2. Get the dataset (see scripts/download_dataset.py for full instructions -
-#    Kaggle requires authenticated API access, so this is a manual step
-#    unless you configure KAGGLE_USERNAME/KAGGLE_KEY in .env)
+3. Get the dataset (see scripts/download_dataset.py for full instructions -
 python scripts/download_dataset.py --from-zip /path/to/downloaded/archive.zip
 
-# 3. Run the full ML pipeline (idempotent - safe to re-run; skips stages
+4. Run the full ML pipeline (idempotent - safe to re-run; skips stages
 #    whose output already exists unless --force is passed)
 python scripts/run_pipeline.py
 
-# 4. Load processed data + artifacts into SQLite
+5. Load processed data + artifacts into SQLite
 python scripts/load_database.py
 
-# 5. Start the backend
+6. Start the backend
 uvicorn backend.app.main:app --reload --port 8000
 
-# 6. Start the frontend (separate terminal)
+7. Start the frontend (separate terminal)
 cd frontend
 npm install
 npm run dev
